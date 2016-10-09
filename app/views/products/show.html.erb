@@ -1,0 +1,19 @@
+<a class="js-next" data-id="<%= @product.next.id %>" href="#">Next Product</a>
+<h1 class="productName"><%= @product.name %></h1>
+<p class="productInventory">Inventory: <%= @product.inventory %></p>
+<p class="productPrice">Price: <%= @product.price %></p>
+<p class="productDescription">Description: <%= @product.description %></p>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-next").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/data", function(data) {
+      $(".productInventory").html(data.inventory);
+      $(".productPrice").html(data.price);
+      $(".productDescription").html(data.description);
+      $(".productName").html(data.name);
+    });
+  });
+});
+</script>
